@@ -99,17 +99,21 @@ ngMorphingModal.directive('ngMorphingModal', function () {
         }
       }
 
-      $scope.retrieveScale = function (btn) {
+      $scope.retrieveScale = function (modalbg) {
         var that = this;
-        if (btn.offset()) {
-          var btnRadius = btn.width() / 2,
-            left = btn.offset().left + btnRadius,
-            top = btn.offset().top + btnRadius - $(window).scrollTop(),
-            scale = that.scaleValue(top, left, btnRadius, $(window).height(), $(window).width());
+        if (modalbg.offset()) {
+          //var btnRadius = btn.width() / 2,
+          //  left = btn.offset().left + btnRadius,
+          //  top = btn.offset().top + btnRadius - $(window).scrollTop(),
+          //  scale = that.scaleValue(top, left, btnRadius, $(window).height(), $(window).width());
 
-          btn.css('position', 'fixed').velocity({
-            top: top - btnRadius,
-            left: left - btnRadius,
+          var scale = 1.0;
+
+          modalbg.css('position', 'fixed').velocity({
+            //top: 0, //top - btnRadius,
+            //left: 0, // left - btnRadius,
+            width: "100%",
+            height: "100%",
             translateX: 0
           }, 0);
         } else {
@@ -141,15 +145,16 @@ ngMorphingModal.directive('ngMorphingModal', function () {
 
         var that = this;
 
-        var layer = $('.cd-section.modal-is-visible').find('.cd-modal-bg'),
-          layerRadius = layer.width() / 2,
-          layerTop = layer.siblings('.btn').offset().top + layerRadius - $(window).scrollTop(),
-          layerLeft = layer.siblings('.btn').offset().left + layerRadius,
-          scale = that.scaleValue(layerTop, layerLeft, layerRadius, $(window).height(), $(window).width());
+        var layer = $('.cd-section.modal-is-visible').find('.cd-modal-bg');
+
+          //layerRadius = layer.width() / 2,
+          //layerTop = layer.siblings('.btn').offset().top + layerRadius - $(window).scrollTop(),
+          //layerLeft = layer.siblings('.btn').offset().left + layerRadius,
+          //scale = that.scaleValue(layerTop, layerLeft, layerRadius, $(window).height(), $(window).width());
 
         layer.velocity({
-          top: layerTop - layerRadius,
-          left: layerLeft - layerRadius,
+          //top: layerTop - layerRadius,
+          //left: layerLeft - layerRadius,
           scale: scale
         }, 0);
       }
